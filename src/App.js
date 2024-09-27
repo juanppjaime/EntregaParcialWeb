@@ -2,24 +2,25 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import RobotDetail from "./components/RobotDetail";
 import RobotList from "./components/RobotList";
-import NavBar from "./components/NavBar";
 import LoginForm from "./components/LoginForm";
-import { useState } from "react"; 
+import { useState } from "react";
 
 function App() {
   const [error, setError] = useState(''); 
+
   const handleLogin = (username, password) => {
     if (username === "admin" && password === "pass") {
       setError('');
       console.log('Inicio de sesión exitoso');
+      return true; 
     } else {
       setError('Credenciales incorrectas');
+      return false; 
     }
   };
 
   return (
     <div className="App">
-      <NavBar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginForm onLogin={handleLogin} error={error} />} />
